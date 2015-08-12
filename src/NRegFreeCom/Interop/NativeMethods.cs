@@ -215,7 +215,7 @@ namespace NRegFreeCom.Interop
 
 
 
-        [DllImport("kernel32.dll", EntryPoint = "LoadLibrary", SetLastError = true)]
+        [DllImport("kernel32.dll", EntryPoint = "LoadLibrary", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern SafeLibraryHandle LoadLibrary_Marshaled([MarshalAs(UnmanagedType.LPStr)] string lpLibFileName);
 
 
@@ -243,10 +243,10 @@ namespace NRegFreeCom.Interop
         /// <param name="hFile"></param>
         /// <param name="dwFlags">The action to be taken when loading the module. If no flags are specified, the behavior of this function is identical to that of the LoadLibrary function. This parameter can be one of the following values.</param>
         /// <returns></returns>
-        [DllImport("kernel32.dll", SetLastError = true)]
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, LOAD_LIBRARY_FLAGS dwFlags);
 
-        [DllImport("kernel32.dll", SetLastError = true,EntryPoint = "LoadLibraryEx")]
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "LoadLibraryEx", CharSet = CharSet.Unicode)]
         public static extern SafeLibraryHandle LoadLibraryEx_Marshaled(string lpFileName, IntPtr hFile, LOAD_LIBRARY_FLAGS dwFlags);
         
 
