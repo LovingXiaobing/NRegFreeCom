@@ -68,6 +68,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RegFreeServerLocal.vbs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="RegFreeComNativeInterfacesLib">
       <Guid>{1A9DEA2C-DA60-46CE-B352-4282CB407B3A}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -77,11 +82,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RegFreeServerLocal.vbs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,8 +8,9 @@ ipch
 build
 Debug
 Release
-bin
+//bin
 obj
+.vs
 
 //nuget
 *.nupkg

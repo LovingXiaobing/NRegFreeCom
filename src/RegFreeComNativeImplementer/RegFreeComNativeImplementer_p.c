@@ -3,11 +3,11 @@
 /* this ALWAYS GENERATED file contains the proxy stub code */
 
 
- /* File created by MIDL compiler version 7.00.0555 */
-/* at Wed May 14 13:40:51 2014
+ /* File created by MIDL compiler version 8.01.0622 */
+/* at Tue Jan 19 06:14:07 2038
  */
 /* Compiler settings for RegFreeComNativeImplementer.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0622 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -16,10 +16,9 @@
 */
 /* @@MIDL_FILE_HEADING(  ) */
 
-#if !defined(_M_IA64) && !defined(_M_AMD64)
+#if !defined(_M_IA64) && !defined(_M_AMD64) && !defined(_ARM_)
 
 
-#pragma warning( disable: 4049 )  /* more than 64k source lines */
 #if _MSC_VER >= 1200
 #pragma warning(push)
 #endif
@@ -47,7 +46,7 @@
 #endif /* __RPCPROXY_H_VERSION__ */
 
 
-#include "RegFreeComNativeImplementer_i.h"
+#include "RegFreeComNativeImplementer.h"
 
 #define TYPE_FORMAT_STRING_SIZE   3                                 
 #define PROC_FORMAT_STRING_SIZE   1                                 
@@ -94,10 +93,9 @@ extern const MIDL_STUBLESS_PROXY_INFO IImplementer_ProxyInfo;
 #if !defined(__RPC_WIN32__)
 #error  Invalid build platform for this stub.
 #endif
-
-#if !(TARGET_IS_NT50_OR_LATER)
-#error You need Windows 2000 or later to run this stub because it uses these features:
-#error   /robust command line switch.
+#if !(TARGET_IS_NT60_OR_LATER)
+#error You need Windows Vista or later to run this stub because it uses these features:
+#error   forced complex structure or array, new range semantics, compiled for Windows Vista.
 #error However, your C/C++ compilation flags indicate you intend to run this app on earlier systems.
 #error This app will fail with the RPC_X_WRONG_STUB_VERSION error.
 #endif
@@ -208,9 +206,9 @@ static const MIDL_STUB_DESC Object_StubDesc =
     0,
     RegFreeComNativeImplementer__MIDL_TypeFormatString.Format,
     1, /* -error bounds_check flag */
-    0x50002, /* Ndr library version */
+    0x60001, /* Ndr library version */
     0,
-    0x700022b, /* MIDL Version 7.0.555 */
+    0x801026e, /* MIDL Version 8.1.622 */
     0,
     0,
     0,  /* notify & notify_flag routine table */
@@ -279,5 +277,5 @@ const ExtendedProxyFileInfo RegFreeComNativeImplementer_ProxyFileInfo =
 #endif
 
 
-#endif /* !defined(_M_IA64) && !defined(_M_AMD64)*/
+#endif /* !defined(_M_IA64) && !defined(_M_AMD64) && !defined(_ARM_) */
 

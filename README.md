@@ -23,12 +23,13 @@
 * Library testing is done on XP SP3 and Windows 7 SP2
 * Run `deploy.bat`
 
+
 ### Samples build
 
-* Visual Studio 2010 SP1 (needs Visual C++)
+* Visual Studio 2017 with Visual C++ and MFC
 * Debug|Mixed Platforms
-* Windows 7 SP 2
-
+* Windows 10
+* Run Visual Studio as Admin
 
 ## Samples
 
@@ -148,7 +149,7 @@ Project design and reasoning:
 
 
 ## TODO:
-* automate Nuget build
+* automate Nuget build (using FAKE)
 * generate reg file during COM registrations
 * add support for Record and dependency Class-Inteface Class-TypeLib Interface-TypeLib registration
 * add assembly batch registration methods RegisterTypeLibWithInterfaces, next is slow (	foreach (var type in ComTypes.ComInterfaces) {ComClrInfoFactory.CreateInterface(type);}
@@ -169,6 +170,8 @@ Project design and reasoning:
 * User free tools. Use SharpDevelop to build all C#. Use NMAKE/CL/MIDL and/or C++ template of SD to build all C++. Compile C++/C# in runtime and start processes to make tests more robust.
 * Investigate WiX and Import/Export reg to Xml projects which contain reg parsing and to XML code, drop support here or reuse then
 * Check Mono and write COM activation if needed for it
+* Migrate to CMAKE and CLANG
+* Write pure managed COM
 
 ##Q&A
 
