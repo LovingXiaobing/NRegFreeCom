@@ -172,6 +172,7 @@ Project design and reasoning:
 * Check Mono and write COM activation if needed for it
 * Migrate to CMAKE and CLANG
 * Write pure managed COM
+* Consider DLL loading proposal in corefx and drop code wich is same here or unify
 
 ##Q&A
 
