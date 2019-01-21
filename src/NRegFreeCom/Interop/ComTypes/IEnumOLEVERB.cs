@@ -6,6 +6,7 @@ namespace NRegFreeCom.Interop.ComTypes
     public interface IEnumOLEVERB
     {
         [PreserveSig]
+        
         int Next([MarshalAs(UnmanagedType.U4)] int celt, [Out] OLEVERB rgelt, [Out, MarshalAs(UnmanagedType.LPArray)] int[] pceltFetched);
         [PreserveSig]
         int Skip([In, MarshalAs(UnmanagedType.U4)] int celt);

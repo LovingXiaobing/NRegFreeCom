@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using NRegFreeCom.Interop;
+using PInvoke;
 
 namespace NRegFreeCom
 {
@@ -127,7 +128,7 @@ namespace NRegFreeCom
             _currentDispatcher._atom = NativeMethods.RegisterClass(ref wc);
             if (_currentDispatcher._atom == 0)
             {
-                throw new Win32Exception("Failed to register window");
+                throw new System.ComponentModel.Win32Exception("Failed to register window");
             }
             _currentDispatcher._messageDispatcherWindow = NativeMethods.CreateWindowEx(
           0,
@@ -142,15 +143,15 @@ namespace NRegFreeCom
             if (_currentDispatcher._messageDispatcherWindow == IntPtr.Zero)
             {
                 int lastError = Marshal.GetLastWin32Error();
-                throw new Win32Exception(lastError);
+                throw new System.ComponentModel.Win32Exception(lastError);
             }
-            MSG msg;
+            User32.MSG msg;
             while (NativeMethods.GetMessage(out msg, IntPtr.Zero, 0, 0))
             {
                 // if wm_quit received, object gets revoked from rot as using block exits.
                 // Thread (even process) can also exit.
-                NativeMethods.TranslateMessage(ref msg);
-                NativeMethods.DispatchMessage(ref msg);
+                User32.TranslateMessage(ref msg);
+                User32.DispatchMessage(ref msg);
             }
 
         }
@@ -181,9 +182,9 @@ namespace NRegFreeCom
 
         public void InvokeShutdown()
         {
-            NativeMethods.PostMessage(_messageDispatcherWindow, (uint)WM.QUIT, IntPtr.Zero, IntPtr.Zero);
+            User32.PostMessage(_messageDispatcherWindow, User32.WindowMessage.WM_QUIT, IntPtr.Zero, IntPtr.Zero);
             _running.WaitOne();
-            NativeMethods.DestroyWindow(_messageDispatcherWindow);
+            User32.DestroyWindow(_messageDispatcherWindow);
             NativeMethods.UnregisterClass(new IntPtr((int)_atom), _hInstance);
             _hasShutdownFinished = true;
         }
@@ -194,7 +195,7 @@ namespace NRegFreeCom
             _invokes.Enqueue(new Invocation(method, args));
 
             _invoked = new AutoResetEvent(false);
-            NativeMethods.PostMessage(_messageDispatcherWindow, hookMessage, new IntPtr(hookMessageDiffl), new IntPtr(hookMessageDiffw));
+            User32.PostMessage(_messageDispatcherWindow, hookMessage, new IntPtr(hookMessageDiffl), new IntPtr(hookMessageDiffw));
             _invoked.WaitOne();
         }
     }

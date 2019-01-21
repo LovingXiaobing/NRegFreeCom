@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
 using NRegFreeCom.Interop.ComTypes;
-
+using PInvoke;
 namespace NRegFreeCom.Interop
 {
     [SuppressUnmanagedCodeSecurity]
@@ -49,10 +49,6 @@ namespace NRegFreeCom.Interop
            CLSCTX dwClsContext,
            [In, MarshalAs(UnmanagedType.LPStruct)] Guid riid,
            [MarshalAs(UnmanagedType.IUnknown)] out object rReturnedComObject);
-
-        [return: MarshalAs(UnmanagedType.Bool)]
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
         public static extern ushort RegisterClass([In] ref WNDCLASS lpWndClass);
@@ -141,6 +137,9 @@ namespace NRegFreeCom.Interop
            IntPtr hInstance,
            IntPtr lpParam);
 
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [PreserveSig]
@@ -401,42 +400,10 @@ namespace NRegFreeCom.Interop
         /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern bool GetMessage(
-            out MSG lpMsg,
+            out User32.MSG lpMsg,
             IntPtr hWnd,
             uint wMsgFilterMin,
             uint wMsgFilterMax);
-
-        /// <summary>
-        /// The TranslateMessage function translates virtual-key messages into 
-        /// character messages. The character messages are posted to the calling 
-        /// thread's message queue, to be read the next time the thread calls the 
-        /// GetMessage or PeekMessage function.
-        /// </summary>
-        /// <param name="lpMsg"></param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        public static extern bool TranslateMessage([In] ref MSG lpMsg);
-
-        /// <summary>
-        /// The DispatchMessage function dispatches a message to a window 
-        /// procedure. It is typically used to dispatch a message retrieved by 
-        /// the GetMessage function.
-        /// </summary>
-        /// <param name="lpMsg"></param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        public static extern IntPtr DispatchMessage([In] ref MSG lpMsg);
-
-        /// <summary>
-        /// <para>The DestroyWindow function destroys the specified window. The function sends WM_DESTROY and WM_NCDESTROY messages to the window to deactivate it and remove the keyboard focus from it. The function also destroys the window's menu, flushes the thread message queue, destroys timers, removes clipboard ownership, and breaks the clipboard viewer chain (if the window is at the top of the viewer chain).</para>
-        /// <para>If the specified window is a parent or owner window, DestroyWindow automatically destroys the associated child or owned windows when it destroys the parent or owner window. The function first destroys child or owned windows, and then it destroys the parent or owner window.</para>
-        /// <para>DestroyWindow also destroys modeless dialog boxes created by the CreateDialog function.</para>
-        /// </summary>
-        /// <param name="hwnd">Handle to the window to be destroyed.</param>
-        /// <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DestroyWindow(IntPtr hwnd);
 
         [DllImport("user32.dll")]
         public static extern IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);

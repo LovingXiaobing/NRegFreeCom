@@ -19,7 +19,7 @@
 
 ## Build and deployment
 
-* `NRegFreeCom` is redistributable managed library, can be build in Release and Debug mode ShardDevelop or Visual Studio 2010 SP1. Is build for `Any Cpu`
+* `NRegFreeCom` is redistributable managed library, can be build in Release and Debug mode Visual Studio 2017. Is build for `Any Cpu`
 * Library testing is done on XP SP3 and Windows 7 SP2
 * Run `deploy.bat`
 

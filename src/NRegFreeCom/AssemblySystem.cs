@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using NRegFreeCom.Interop;
+using PInvoke;
 
 namespace NRegFreeCom
 {
@@ -107,12 +108,12 @@ namespace NRegFreeCom
             if (hModule == IntPtr.Zero)
             {
                 var error = Marshal.GetLastWin32Error();
-                var ex = new Win32Exception(error);
-                if (error == SYSTEM_ERROR_CODES.ERROR_MOD_NOT_FOUND
-                    || error == SYSTEM_ERROR_CODES.ERROR_ENVVAR_NOT_FOUND) //TODO: change exception - this happens if path not rooted 
+                var ex = new System.ComponentModel.Win32Exception(error);
+                if (error == (int)Win32ErrorCode.ERROR_MOD_NOT_FOUND
+                    || error == (int)Win32ErrorCode.ERROR_ENVVAR_NOT_FOUND) //TODO: change exception - this happens if path not rooted 
                     throw new System.IO.FileNotFoundException("Failed to find dll or its dependencies", path, ex);
-                if (error == SYSTEM_ERROR_CODES.ERROR_BAD_EXE_FORMAT
-                    || error == SYSTEM_ERROR_CODES.ERROR_INVALID_PARAMETER)//TODO: change exception - this happens if path not rooted 
+                if (error == (int)Win32ErrorCode.ERROR_BAD_EXE_FORMAT
+                    || error == (int)Win32ErrorCode.ERROR_INVALID_PARAMETER)//TODO: change exception - this happens if path not rooted 
                     throw new BadImageFormatException("Failed to load dll", path, ex);
                 throw ex;
             }
@@ -134,7 +135,7 @@ namespace NRegFreeCom
                     directory = normalize(directory);
                     IntPtr cookie = NativeMethods.AddDllDirectory(directory);
                     if (cookie == IntPtr.Zero)
-                        throw new Win32Exception(Marshal.GetLastWin32Error());
+                        throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
                     _dirCookies.Add(cookie, directory);
                 }
                 catch (EntryPointNotFoundException ex) // system without patch 
@@ -160,7 +161,7 @@ namespace NRegFreeCom
             directory = normalize(directory);
             bool result = NativeMethods.SetDllDirectory(directory);
             if (!result)
-                throw new Win32Exception(Marshal.GetLastWin32Error());
+                throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
         }
 
 

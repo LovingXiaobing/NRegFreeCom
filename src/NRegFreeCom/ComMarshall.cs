@@ -29,7 +29,7 @@ namespace NRegFreeCom
             IntPtr unknownPointer = Marshal.GetIUnknownForObject(instance);
             IntPtr realPointer = IntPtr.Zero;
             int result = Marshal.QueryInterface(unknownPointer, ref typeIdd, out realPointer);
-            if (result != SYSTEM_ERROR_CODES.ERROR_SUCCESS)
+            if (result != (int)PInvoke.Win32ErrorCode.ERROR_SUCCESS)
                 throw new InvalidCastException(string.Format("Failed to cast COM proxy to real object of type {0}", typeof(T)), new Win32Exception(result));
             return (T)Marshal.GetObjectForIUnknown(realPointer);
         }
