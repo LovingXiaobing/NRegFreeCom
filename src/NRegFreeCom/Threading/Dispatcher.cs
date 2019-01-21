@@ -195,7 +195,7 @@ namespace NRegFreeCom
             _invokes.Enqueue(new Invocation(method, args));
 
             _invoked = new AutoResetEvent(false);
-            User32.PostMessage(_messageDispatcherWindow, hookMessage, new IntPtr(hookMessageDiffl), new IntPtr(hookMessageDiffw));
+            NativeMethods.PostMessage(_messageDispatcherWindow, hookMessage, new IntPtr(hookMessageDiffl), new IntPtr(hookMessageDiffw));
             _invoked.WaitOne();
         }
     }

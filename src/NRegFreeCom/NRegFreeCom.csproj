@@ -224,7 +224,6 @@
     <Compile Include="Interop\WELL_KNOWN_IIDS.cs" />
     <Compile Include="Interop\WindowStyles.cs" />
     <Compile Include="Interop\WindowStylesEx.cs" />
-    <Compile Include="Interop\WM.cs" />
     <Compile Include="Interop\WNDCLASS.cs" />
     <Compile Include="Interop\WndProc.cs" />
   </ItemGroup>
